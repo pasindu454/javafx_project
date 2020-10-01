@@ -29,17 +29,19 @@ public class MainController implements Initializable {
 
     @FXML
     private void filter(ActionEvent event){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-        String s= path.getText();
-        List<String> list = scan(s);
-        getDetails(list);
+        if(!path.getText().equals(null)) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String s = path.getText();
+                    List<String> list = scan(s);
+                    getDetails(list);
 
-            }
-        });
-       thread.start();
-       pBar.setProgress(-1);
+                }
+            });
+            thread.start();
+            pBar.setProgress(-1);
+        }
     }
     private void getDetails(List<String> list){
         Document document = null;
