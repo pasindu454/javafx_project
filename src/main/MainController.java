@@ -3,6 +3,7 @@ package main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +19,8 @@ public class MainController implements Initializable {
 
     @FXML
     TextField path;
-
+    @FXML
+    ProgressBar pBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -27,16 +29,19 @@ public class MainController implements Initializable {
 
     @FXML
     private void filter(ActionEvent event){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-        String s= path.getText();
-        List<String> list = scan(s);
-        getDetails(list);
+        if(!path.getText().equals(null)) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String s = path.getText();
+                    List<String> list = scan(s);
+                    getDetails(list);
 
-            }
-        });
-       thread.start();
+                }
+            });
+            thread.start();
+            pBar.setProgress(-1);
+        }
     }
     private void getDetails(List<String> list){
         Document document = null;
