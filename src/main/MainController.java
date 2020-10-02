@@ -11,6 +11,8 @@ import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,6 +24,8 @@ public class MainController implements Initializable {
     @FXML
     ProgressBar pBar;
 
+
+    List<byte []> hashed = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -48,7 +52,14 @@ public class MainController implements Initializable {
     private void getDetails(List<String> list){
         Document document = null;
         List<Contact> contacts = new ArrayList<>();
-            for(int i=0;i<list.size();i++){
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        for(int i=0;i<list.size();i++){
 
                 try {
                    // System.out.println(list.get(i));
@@ -60,8 +71,14 @@ public class MainController implements Initializable {
                 String name = document.select(".contact-name--m97Sb").text();
                 String number = document.select(".number--12hbs").text();
                 //System.out.println(document.select(".poster-details--2XBt1"));
+               String toHash = name+number;
+               byte [] temp = messageDigest.digest(toHash.getBytes());
+               if(!hashed.contains(temp)){
+               hashed.add(temp);
+
                 System.out.println(name+" "+number);
                 contacts.add(new Contact(name, number));
+               }
             }
             //printList(contacts);
     }
