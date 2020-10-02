@@ -34,9 +34,11 @@ public class MainController implements Initializable {
                 @Override
                 public void run() {
                     String s = path.getText();
-                    List<String> list = scan(s);
-                    getDetails(list);
-
+                    for(int i=1;i<10;i++) {
+                        String temp = s+i;
+                        List<String> list = scan(s);
+                        getDetails(list);
+                    }
                 }
             });
             thread.start();
