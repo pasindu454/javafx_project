@@ -2,9 +2,13 @@ package main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -104,6 +108,14 @@ public class MainController implements Initializable {
       return list;
     }
 
-
+@FXML
+    private void view(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/View.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.show();
+    
+}
 
 }
