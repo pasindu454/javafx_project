@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
    <children>
-      <Label layoutX="214.0" layoutY="38.0" prefHeight="54.0" prefWidth="173.0" text="View Page" />
-      <Button layoutX="248.0" layoutY="225.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Show" />
+      <Label fx:id="label" layoutX="214.0" layoutY="38.0" prefHeight="54.0" prefWidth="173.0" text="View Page" />
+      <Button fx:id="show" layoutX="248.0" layoutY="225.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Show" />
       <ProgressBar layoutX="73.0" layoutY="130.0" prefHeight="18.0" prefWidth="428.0" />
    </children>
 </AnchorPane>
